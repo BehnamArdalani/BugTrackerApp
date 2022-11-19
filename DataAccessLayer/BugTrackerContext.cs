@@ -19,5 +19,9 @@ namespace DataAccessLayer
         {
             optionsBuilder.UseSqlServer("Data Source=BHR\\SQL2019EXPRESS;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;Initial catalog=BugTracker;");
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
