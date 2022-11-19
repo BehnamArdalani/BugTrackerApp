@@ -83,19 +83,19 @@ namespace DataAccessLayer.Migrations
                         column: x => x.CreatorId,
                         principalTable: "People",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Bugs_Priorities_PriorityId",
                         column: x => x.PriorityId,
                         principalTable: "Priorities",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Bugs_Severities_SeverityId",
                         column: x => x.SeverityId,
                         principalTable: "Severities",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -117,13 +117,13 @@ namespace DataAccessLayer.Migrations
                         column: x => x.BugId,
                         principalTable: "Bugs",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Messages_People_CreatorId",
                         column: x => x.CreatorId,
                         principalTable: "People",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateIndex(
