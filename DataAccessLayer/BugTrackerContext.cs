@@ -9,11 +9,11 @@ namespace DataAccessLayer
 {
     public class BugTrackerContext : DbContext
     {
-        public DbSet<Bugs> Bugs { get; set; }
-        public DbSet<People> People { get; set; }
-        public DbSet<Priorities> Priorities { get; set; }
-        public DbSet<Severities> Severities { get; set; }
-        public DbSet<Messages> Messages { get; set; }
+        public DbSet<Bug> Bugs { get; set; }
+        public DbSet<Person> People { get; set; }
+        public DbSet<Priority> Priorities { get; set; }
+        public DbSet<Severity> Severities { get; set; }
+        public DbSet<Message> Messages { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

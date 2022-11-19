@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer
 {
-    public class Severities
+    public class Severity
     {
         int SeverityId { get; set; }
         string Name { get; set; }

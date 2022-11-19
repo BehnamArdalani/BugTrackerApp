@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer
 {
-    public class Bugs
+    public class Bug
     {
         int BugId { get; set; }
         string BugName { get; set; }
@@ -17,9 +17,9 @@ namespace DataAccessLayer
         DateTime CreationDate { get; set; }
         DateTime LastUpdate { get; set; }
         bool Solved { get; set; }
-        People Creator { get; set; }
-        Priorities Priority { get; set; }
-        Severities Severity { get; set; }
+        Person Creator { get; set; }
+        Priority Priority { get; set; }
+        Severity Severity { get; set; }
 
     }
 }

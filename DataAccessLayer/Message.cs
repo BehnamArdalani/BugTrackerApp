@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer
 {
-    public class Messages
+    public class Message
     {
         int MessageId { get; set; }
         int BugId { get; set; }
         int CreatorId { get; set; }
         string Text { get; set; }
         DateTime Created { get; set; }
-        Bugs Bug { get; set; }
-        People Creator { get; set; }
+        Bug Bug { get; set; }
+        Person Creator { get; set; }
 
     }
 }
