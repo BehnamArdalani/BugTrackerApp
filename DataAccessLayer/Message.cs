@@ -8,13 +8,13 @@ namespace DataAccessLayer
 {
     public class Message
     {
-        int MessageId { get; set; }
-        int BugId { get; set; }
-        int CreatorId { get; set; }
-        string Text { get; set; }
-        DateTime Created { get; set; }
-        Bug Bug { get; set; }
-        Person Creator { get; set; }
+        public int Id { get; set; }
+        public int BugId { get; set; }
+        public int CreatorId { get; set; }
+        public string Text { get; set; }
+        public DateTime Created { get; set; }
+        public Bug Bug { get; set; }
+        public Person Creator { get; set; }
 
     }
 }

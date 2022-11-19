@@ -8,18 +8,18 @@ namespace DataAccessLayer
 {
     public class Bug
     {
-        int BugId { get; set; }
-        string BugName { get; set; }
-        string Description { get; set; }
-        int CreatorId { get; set; }
-        int PriorityId { get; set; }
-        int SeverityId { get; set; }
-        DateTime CreationDate { get; set; }
-        DateTime LastUpdate { get; set; }
-        bool Solved { get; set; }
-        Person Creator { get; set; }
-        Priority Priority { get; set; }
-        Severity Severity { get; set; }
+        public int Id { get; set; }
+        public string BugName { get; set; }
+        public string Description { get; set; }
+        public int CreatorId { get; set; }
+        public int PriorityId { get; set; }
+        public int SeverityId { get; set; }
+        public DateTime CreationDate { get; set; }
+        public DateTime LastUpdate { get; set; }
+        public bool Solved { get; set; }
+        public Person Creator { get; set; }
+        public Priority Priority { get; set; }
+        public Severity Severity { get; set; }
 
     }
 }
