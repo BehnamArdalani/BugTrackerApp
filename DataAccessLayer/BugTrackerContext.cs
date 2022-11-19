@@ -14,6 +14,7 @@ namespace DataAccessLayer
         public DbSet<Priority> Priorities { get; set; }
         public DbSet<Severity> Severities { get; set; }
         public DbSet<Message> Messages { get; set; }
+        public DbSet<Log> Logs { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
