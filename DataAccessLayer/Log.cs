@@ -13,5 +13,11 @@ namespace DataAccessLayer
         public string Message { get; set; }
         public DateTime Created { get; set; }
         public Bug Bug { get; set; }
+
+        public override string ToString()
+        {
+            return Created.ToString() + " -> " + Message.ToString();
+        }
     }
+
 }

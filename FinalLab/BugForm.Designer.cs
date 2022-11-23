@@ -36,7 +36,7 @@
             this.dgvMessages = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.btnNewMessage = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.rtxtLogs = new System.Windows.Forms.RichTextBox();
             this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllBugs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMessages)).BeginInit();
@@ -45,7 +45,7 @@
             // dgvAllBugs
             // 
             this.dgvAllBugs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAllBugs.Location = new System.Drawing.Point(35, 72);
+            this.dgvAllBugs.Location = new System.Drawing.Point(19, 72);
             this.dgvAllBugs.MultiSelect = false;
             this.dgvAllBugs.Name = "dgvAllBugs";
             this.dgvAllBugs.ReadOnly = true;
@@ -59,7 +59,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(35, 45);
+            this.label1.Location = new System.Drawing.Point(19, 45);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(133, 21);
             this.label1.TabIndex = 1;
@@ -67,7 +67,7 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(342, 579);
+            this.btnEdit.Location = new System.Drawing.Point(326, 579);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(90, 37);
             this.btnEdit.TabIndex = 2;
@@ -77,7 +77,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(438, 579);
+            this.btnSave.Location = new System.Drawing.Point(422, 579);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(90, 37);
             this.btnSave.TabIndex = 3;
@@ -87,7 +87,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(534, 579);
+            this.btnCancel.Location = new System.Drawing.Point(518, 579);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(90, 37);
             this.btnCancel.TabIndex = 4;
@@ -98,18 +98,18 @@
             // dgvMessages
             // 
             this.dgvMessages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMessages.Location = new System.Drawing.Point(778, 72);
+            this.dgvMessages.Location = new System.Drawing.Point(762, 72);
             this.dgvMessages.Name = "dgvMessages";
             this.dgvMessages.RowTemplate.Height = 25;
             this.dgvMessages.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMessages.Size = new System.Drawing.Size(307, 217);
+            this.dgvMessages.Size = new System.Drawing.Size(371, 217);
             this.dgvMessages.TabIndex = 5;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(778, 45);
+            this.label2.Location = new System.Drawing.Point(762, 45);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(137, 21);
             this.label2.TabIndex = 6;
@@ -117,7 +117,7 @@
             // 
             // btnNewMessage
             // 
-            this.btnNewMessage.Location = new System.Drawing.Point(630, 579);
+            this.btnNewMessage.Location = new System.Drawing.Point(614, 579);
             this.btnNewMessage.Name = "btnNewMessage";
             this.btnNewMessage.Size = new System.Drawing.Size(90, 37);
             this.btnNewMessage.TabIndex = 7;
@@ -125,19 +125,19 @@
             this.btnNewMessage.UseVisualStyleBackColor = true;
             this.btnNewMessage.Click += new System.EventHandler(this.btnNewMessage_Click);
             // 
-            // richTextBox1
+            // rtxtLogs
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(778, 342);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(307, 218);
-            this.richTextBox1.TabIndex = 8;
-            this.richTextBox1.Text = "";
+            this.rtxtLogs.Location = new System.Drawing.Point(762, 342);
+            this.rtxtLogs.Name = "rtxtLogs";
+            this.rtxtLogs.Size = new System.Drawing.Size(371, 218);
+            this.rtxtLogs.TabIndex = 8;
+            this.rtxtLogs.Text = "";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(778, 315);
+            this.label3.Location = new System.Drawing.Point(762, 315);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(46, 21);
             this.label3.TabIndex = 9;
@@ -147,9 +147,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1118, 648);
+            this.ClientSize = new System.Drawing.Size(1155, 648);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.rtxtLogs);
             this.Controls.Add(this.btnNewMessage);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dgvMessages);
@@ -178,7 +178,7 @@
         private DataGridView dgvMessages;
         private Label label2;
         private Button btnNewMessage;
-        private RichTextBox richTextBox1;
+        private RichTextBox rtxtLogs;
         private Label label3;
     }
 }

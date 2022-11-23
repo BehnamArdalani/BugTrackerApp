@@ -1,26 +1,19 @@
 using DataAccessLayer;
 using GUILayer;
 using System.Windows.Forms;
+using Message = DataAccessLayer.Message;
 
 namespace FinalLab
 {
     public partial class BugForm : Form
     {
         BugTrackerContext context = BugTrackerContextFactory.GetContext();
+        int selectedBugId;
         public BugForm()
         {
             InitializeComponent();
-            
-            dgvAllBugs.ReadOnly = true;
-            dgvMessages.ReadOnly = true;
-            dgvAllBugs.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvMessages.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            btnSave.Enabled = false;
-            btnCancel.Enabled = false;
-            btnNewMessage.Enabled = false;
 
-            dgvAllBugs.DataSource = context.Bugs.Select(b => new BugView(b)).ToArray();
-            dgvAllBugs.Columns["CreatorFullName"].DefaultCellStyle = HyperlinkCellStyle();
+            Initialize();
         }
 
         private DataGridViewCellStyle HyperlinkCellStyle()
@@ -29,6 +22,28 @@ namespace FinalLab
             HyperlinkCellStyle.ForeColor = Color.Blue;
             HyperlinkCellStyle.Font = new Font(Font,FontStyle.Underline);
             return HyperlinkCellStyle;
+        }
+        private void Initialize()
+        {
+            dgvAllBugs.ReadOnly = true;
+            dgvAllBugs.AllowUserToAddRows = false;
+            dgvAllBugs.AllowUserToDeleteRows = false;
+
+            dgvMessages.ReadOnly = true;
+            dgvMessages.AllowUserToAddRows = false;
+            dgvMessages.AllowUserToDeleteRows = false;
+            
+            dgvAllBugs.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvMessages.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            btnSave.Enabled = false;
+            btnCancel.Enabled = false;
+            btnNewMessage.Enabled = false;
+
+            UpdateBugGrid();
+
+            MessageForm.CreatorsFullName = context.People.Select(p => p.Id + ". " + p.FirstName + " " + p.LastName).ToArray();
+
+
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -40,13 +55,45 @@ namespace FinalLab
         {
             formEditingToggle();
 
+            UpdateBugGrid();
+
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             formEditingToggle();
         }
+        private void UpdateBugGrid()
+        {
+            dgvAllBugs.DataSource = null;
+            dgvAllBugs.DataSource = context.Bugs.Select(b => new BugView(b)).ToArray();
+            dgvAllBugs.Columns["CreatorFullName"].DefaultCellStyle = HyperlinkCellStyle();
+            dgvAllBugs.Columns["Id"].Visible = false;
 
+        }
+        private void UpdateMessageGrid()
+        {
+            var messages = context.Messages.Where(m => m.BugId == selectedBugId).OrderByDescending(m => m.Id).Select(m => new MessageView(m)).ToArray();
+            if (messages.Length > 0)
+            {
+                dgvMessages.DataSource = messages;
+                dgvMessages.Columns["Id"].Visible = false;
+            }
+            else
+            {
+                dgvMessages.DataSource = null;
+            }
+
+        }
+        private void UpdateLogBox()
+        {
+            List<Log> logs = context.Logs.Where(l => l.BugId == selectedBugId).ToList();
+            rtxtLogs.Clear();
+            foreach (Log log in logs)
+            {
+                rtxtLogs.AppendText(log.ToString() + "\n");
+            }
+        }
         private void formEditingToggle()
         {
             dgvAllBugs.ReadOnly = !dgvAllBugs.ReadOnly;
@@ -58,17 +105,11 @@ namespace FinalLab
         private void dgvAllBugs_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             btnNewMessage.Enabled = true;
-            var selectedBugId = (int)dgvAllBugs.SelectedRows[0].Cells[0].Value;
-            var messages = context.Messages.Where(m => m.BugId == selectedBugId).OrderByDescending(m => m.Id).Select(m => new MessageView(m)).ToArray();
+            selectedBugId = (int)dgvAllBugs.SelectedRows[0].Cells[0].Value;
             
-            if(messages.Length > 0)
-            {
-                dgvMessages.DataSource = messages;
-            }
-            else
-            {
-                dgvMessages.DataSource = null;
-            }
+            UpdateMessageGrid();
+
+            UpdateLogBox();
 
             string column = dgvAllBugs.Columns[e.ColumnIndex].Name;
 
@@ -89,7 +130,24 @@ namespace FinalLab
 
         private void btnNewMessage_Click(object sender, EventArgs e)
         {
+            MessageForm messageForm = new MessageForm(AddMessageToDatabase,selectedBugId);
+            messageForm.Show();
+            
+        }
+        private void AddMessageToDatabase(Message message)
+        {
+            context.Add(message);
+            
+            Log log = new Log();
+            log.BugId = selectedBugId;
+            log.Created = DateTime.Now;
+            log.Message = "User #" + message.CreatorId + " added a new message to bug #" + selectedBugId + ".";
+            context.Add(log);
 
+            context.SaveChanges();
+            
+            UpdateMessageGrid();
+            UpdateLogBox();
         }
 
         private void dgvAllBugs_CellMouseEnter(object sender, DataGridViewCellEventArgs e)

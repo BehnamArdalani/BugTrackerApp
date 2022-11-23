@@ -42,7 +42,7 @@ namespace GUILayer
             txtId.Text = person.Id.ToString();
             txtFirstName.Text = person.FirstName.ToString();
             txtLastName.Text = person.LastName.ToString();
-            cbJobTitle.SelectedText = person.JobTitle == null ? "" : person.JobTitle.ToString();
+            cbJobTitle.Text = person.JobTitle == null ? "" : person.JobTitle.ToString();
             txtSalary.Text = person.Salary.ToString();
             txtExperience.Text = person.YearsOfExperience.ToString();
             dpHireDate.Value = (DateTime)person.HiredDate;
