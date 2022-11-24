@@ -54,7 +54,7 @@ namespace FinalLab
         private void btnSave_Click(object sender, EventArgs e)
         {
             formEditingToggle();
-
+            context.SaveChanges();
             UpdateBugGrid();
 
         }
@@ -100,12 +100,14 @@ namespace FinalLab
             btnEdit.Enabled = !btnEdit.Enabled;
             btnSave.Enabled = !btnSave.Enabled;
             btnCancel.Enabled = !btnCancel.Enabled;
+            btnAdd.Enabled = !btnAdd.Enabled;
+
         }
 
         private void dgvAllBugs_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             btnNewMessage.Enabled = true;
-            selectedBugId = (int)dgvAllBugs.SelectedRows[0].Cells[0].Value;
+            selectedBugId = (int)dgvAllBugs.SelectedRows[0].Cells["Id"].Value;
             
             UpdateMessageGrid();
 
@@ -141,7 +143,7 @@ namespace FinalLab
             Log log = new Log();
             log.BugId = selectedBugId;
             log.Created = DateTime.Now;
-            log.Message = "User #" + message.CreatorId + " added a new message to bug #" + selectedBugId + ".";
+            log.Message = "User #" + message.CreatorId + " added a message to bug #" + selectedBugId + ".";
             context.Add(log);
 
             context.SaveChanges();
@@ -162,6 +164,27 @@ namespace FinalLab
             {
                 dgvAllBugs.Cursor = Cursors.Hand;
             }
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            BugDetailsForm bugDetailForm = new BugDetailForm(AddBugToDatabase);
+            messageForm.Show();
+        }
+        private void AddBugToDatabase(Bug bug)
+        {
+            context.Add(bug);
+
+            Log log = new Log();
+            log.BugId = selectedBugId;
+            log.Created = DateTime.Now;
+            log.Message = "User #" + bug.CreatorId + " added bug '" + bug.BugName + "'";
+            context.Add(log);
+
+            context.SaveChanges();
+
+            UpdateBugGrid();
+            UpdateLogBox();
         }
     }
 }
