@@ -41,9 +41,25 @@ namespace FinalLab
 
             UpdateBugGrid();
 
-            MessageForm.CreatorsFullName = context.People.Select(p => p.Id + ". " + p.FirstName + " " + p.LastName).ToArray();
+            MessageForm.CreatorsFullName = GetCreatorsFullName();
+            BugDetailsForm.CreatorsFullName = GetCreatorsFullName();
+            BugDetailsForm.Priorities = GetPriorities();
+            BugDetailsForm.Severities = GetSeverities();
 
 
+        }
+
+        private string[] GetCreatorsFullName()
+        {
+            return context.People.Select(p => p.Id + ". " + p.FirstName + " " + p.LastName).ToArray();
+        }
+        private string[] GetPriorities()
+        {
+            return context.Priorities.Select(p => p.Id + ". " + p.Name).ToArray();
+        }
+        private string[] GetSeverities()
+        {
+            return context.Severities.Select(s => s.Id + ". " + s.Name).ToArray();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -100,6 +116,7 @@ namespace FinalLab
             btnEdit.Enabled = !btnEdit.Enabled;
             btnSave.Enabled = !btnSave.Enabled;
             btnCancel.Enabled = !btnCancel.Enabled;
+            btnNewMessage.Enabled = !btnNewMessage.Enabled;
             btnAdd.Enabled = !btnAdd.Enabled;
 
         }
@@ -168,17 +185,18 @@ namespace FinalLab
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            BugDetailsForm bugDetailForm = new BugDetailForm(AddBugToDatabase);
-            messageForm.Show();
+            BugDetailsForm bugDetailsForm = new BugDetailsForm(AddBugToDatabase);
+            bugDetailsForm.Show();
         }
         private void AddBugToDatabase(Bug bug)
         {
             context.Add(bug);
+            context.SaveChanges();
 
             Log log = new Log();
-            log.BugId = selectedBugId;
+            log.BugId = bug.Id;
             log.Created = DateTime.Now;
-            log.Message = "User #" + bug.CreatorId + " added bug '" + bug.BugName + "'";
+            log.Message = "User #" + bug.CreatorId + " added bug #" + bug.Id;
             context.Add(log);
 
             context.SaveChanges();

@@ -42,16 +42,15 @@
             // cbCreatorFullName
             // 
             this.cbCreatorFullName.FormattingEnabled = true;
-            this.cbCreatorFullName.Location = new System.Drawing.Point(186, 173);
+            this.cbCreatorFullName.Location = new System.Drawing.Point(181, 107);
             this.cbCreatorFullName.Name = "cbCreatorFullName";
             this.cbCreatorFullName.Size = new System.Drawing.Size(152, 23);
-            this.cbCreatorFullName.TabIndex = 15;
-            this.cbCreatorFullName.DataSource = CreatorsFullName;
+            this.cbCreatorFullName.TabIndex = 2;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(67, 288);
+            this.label5.Location = new System.Drawing.Point(62, 222);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(78, 15);
             this.label5.TabIndex = 19;
@@ -60,7 +59,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(67, 232);
+            this.label6.Location = new System.Drawing.Point(62, 166);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(31, 15);
             this.label6.TabIndex = 17;
@@ -69,7 +68,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(67, 176);
+            this.label3.Location = new System.Drawing.Point(62, 110);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(106, 15);
             this.label3.TabIndex = 16;
@@ -77,15 +76,15 @@
             // 
             // txtText
             // 
-            this.txtText.Location = new System.Drawing.Point(186, 229);
+            this.txtText.Location = new System.Drawing.Point(181, 163);
             this.txtText.Name = "txtText";
             this.txtText.Size = new System.Drawing.Size(152, 23);
-            this.txtText.TabIndex = 14;
+            this.txtText.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(67, 122);
+            this.label2.Location = new System.Drawing.Point(62, 56);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(66, 15);
             this.label2.TabIndex = 13;
@@ -93,33 +92,34 @@
             // 
             // txtBugName
             // 
-            this.txtBugName.Location = new System.Drawing.Point(186, 119);
+            this.txtBugName.Enabled = false;
+            this.txtBugName.Location = new System.Drawing.Point(181, 53);
             this.txtBugName.Name = "txtBugName";
             this.txtBugName.Size = new System.Drawing.Size(152, 23);
-            this.txtBugName.TabIndex = 12;
+            this.txtBugName.TabIndex = 1;
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(153, 358);
+            this.btnSave.Location = new System.Drawing.Point(148, 292);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(90, 37);
-            this.btnSave.TabIndex = 20;
+            this.btnSave.TabIndex = 5;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // dpCreatedDate
             // 
-            this.dpCreatedDate.Location = new System.Drawing.Point(186, 282);
+            this.dpCreatedDate.Location = new System.Drawing.Point(181, 216);
             this.dpCreatedDate.Name = "dpCreatedDate";
             this.dpCreatedDate.Size = new System.Drawing.Size(152, 23);
-            this.dpCreatedDate.TabIndex = 21;
+            this.dpCreatedDate.TabIndex = 4;
             // 
             // MessageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(413, 472);
+            this.ClientSize = new System.Drawing.Size(413, 378);
             this.Controls.Add(this.dpCreatedDate);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.cbCreatorFullName);

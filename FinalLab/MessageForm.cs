@@ -14,14 +14,17 @@ namespace GUILayer
 {
     public partial class MessageForm : Form
     {
+        BugTrackerContext context = BugTrackerContextFactory.GetContext();
+
         System.Action<Message> newMessageCallBack;
-        public static string[] CreatorsFullName;
+        public static string[]? CreatorsFullName;
         public int bugId;
         public MessageForm(System.Action<Message> newMessageCallBack, int bugId)
         {
             InitializeComponent();
             this.newMessageCallBack = newMessageCallBack;
             this.bugId = bugId;
+            txtBugName.Text = context.Bugs.First(b => b.Id == bugId).BugName.ToString();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
