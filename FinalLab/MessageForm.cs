@@ -39,10 +39,15 @@ namespace GUILayer
         {
             Message message = new Message();
             message.BugId = bugId;
-            message.Text = txtText.Text;
+            message.Text = rbText.Text;
             message.CreatorId = cbCreatorFullName.SelectedIndex + 1;
             message.Created = dpCreatedDate.Value;
             return message;
+        }
+
+        private void MessageForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -204,5 +204,10 @@ namespace FinalLab
             UpdateBugGrid();
             UpdateLogBox();
         }
+
+        private void btnFilter_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -39,6 +39,7 @@
             this.rtxtLogs = new System.Windows.Forms.RichTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.btnFilter = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllBugs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMessages)).BeginInit();
             this.SuspendLayout();
@@ -69,7 +70,7 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Location = new System.Drawing.Point(403, 475);
+            this.btnEdit.Location = new System.Drawing.Point(320, 475);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(90, 37);
             this.btnEdit.TabIndex = 1;
@@ -79,7 +80,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(499, 475);
+            this.btnSave.Location = new System.Drawing.Point(416, 475);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(90, 37);
             this.btnSave.TabIndex = 2;
@@ -89,7 +90,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(595, 475);
+            this.btnCancel.Location = new System.Drawing.Point(512, 475);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(90, 37);
             this.btnCancel.TabIndex = 3;
@@ -120,7 +121,7 @@
             // 
             // btnNewMessage
             // 
-            this.btnNewMessage.Location = new System.Drawing.Point(691, 475);
+            this.btnNewMessage.Location = new System.Drawing.Point(704, 475);
             this.btnNewMessage.Name = "btnNewMessage";
             this.btnNewMessage.Size = new System.Drawing.Size(90, 37);
             this.btnNewMessage.TabIndex = 4;
@@ -148,7 +149,7 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(307, 475);
+            this.btnAdd.Location = new System.Drawing.Point(224, 475);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(90, 37);
             this.btnAdd.TabIndex = 0;
@@ -156,11 +157,22 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // btnFilter
+            // 
+            this.btnFilter.Location = new System.Drawing.Point(608, 475);
+            this.btnFilter.Name = "btnFilter";
+            this.btnFilter.Size = new System.Drawing.Size(90, 37);
+            this.btnFilter.TabIndex = 12;
+            this.btnFilter.Text = "Filter Result";
+            this.btnFilter.UseVisualStyleBackColor = true;
+            this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
+            // 
             // BugForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 535);
+            this.Controls.Add(this.btnFilter);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.rtxtLogs);
@@ -195,5 +207,6 @@
         private RichTextBox rtxtLogs;
         private Label label3;
         private Button btnAdd;
+        private Button btnFilter;
     }
 }
