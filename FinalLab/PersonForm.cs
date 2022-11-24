@@ -47,7 +47,7 @@ namespace GUILayer
             txtExperience.Text = person.YearsOfExperience.ToString();
             dpHireDate.Value = (DateTime)person.HiredDate;
             txtAddress.Text = person.Address!.ToString();
-            txtEmail.Text = person.Email!.ToString();
+            txtEmail.Text = person.Email == null ? "" : person.Email!.ToString();
             dpDateofBirth.Value = (DateTime)person.DateOfBirth!;
         }
     }

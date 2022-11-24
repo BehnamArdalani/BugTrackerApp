@@ -30,22 +30,22 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
-            this.dpCreatedDate = new System.Windows.Forms.DateTimePicker();
+            this.dpCreationDateFrom = new System.Windows.Forms.DateTimePicker();
             this.cbCreatorFullName = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtBugName = new System.Windows.Forms.TextBox();
+            this.txtContains = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dpCreationDateTo = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dpLastUpdateTo = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
-            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
+            this.dpLastUpdateFrom = new System.Windows.Forms.DateTimePicker();
             this.label7 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbPriority = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cbSeverity = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.cbSolved = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
@@ -67,12 +67,12 @@
             this.txtId.Size = new System.Drawing.Size(152, 23);
             this.txtId.TabIndex = 0;
             // 
-            // dpCreatedDate
+            // dpCreationDateFrom
             // 
-            this.dpCreatedDate.Location = new System.Drawing.Point(67, 121);
-            this.dpCreatedDate.Name = "dpCreatedDate";
-            this.dpCreatedDate.Size = new System.Drawing.Size(152, 23);
-            this.dpCreatedDate.TabIndex = 1;
+            this.dpCreationDateFrom.Location = new System.Drawing.Point(67, 121);
+            this.dpCreationDateFrom.Name = "dpCreationDateFrom";
+            this.dpCreationDateFrom.Size = new System.Drawing.Size(152, 23);
+            this.dpCreationDateFrom.TabIndex = 1;
             // 
             // cbCreatorFullName
             // 
@@ -109,13 +109,13 @@
             this.label2.TabIndex = 27;
             this.label2.Text = "Contains (Names and Description):";
             // 
-            // txtBugName
+            // txtContains
             // 
-            this.txtBugName.Enabled = false;
-            this.txtBugName.Location = new System.Drawing.Point(67, 334);
-            this.txtBugName.Name = "txtBugName";
-            this.txtBugName.Size = new System.Drawing.Size(358, 23);
-            this.txtBugName.TabIndex = 6;
+            this.txtContains.Enabled = false;
+            this.txtContains.Location = new System.Drawing.Point(67, 334);
+            this.txtContains.Name = "txtContains";
+            this.txtContains.Size = new System.Drawing.Size(358, 23);
+            this.txtContains.TabIndex = 6;
             // 
             // btnSave
             // 
@@ -126,12 +126,12 @@
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             // 
-            // dateTimePicker1
+            // dpCreationDateTo
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(264, 121);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(152, 23);
-            this.dateTimePicker1.TabIndex = 2;
+            this.dpCreationDateTo.Location = new System.Drawing.Point(264, 121);
+            this.dpCreationDateTo.Name = "dpCreationDateTo";
+            this.dpCreationDateTo.Size = new System.Drawing.Size(152, 23);
+            this.dpCreationDateTo.TabIndex = 2;
             // 
             // label4
             // 
@@ -142,12 +142,12 @@
             this.label4.TabIndex = 33;
             this.label4.Text = "Creation Date (To):";
             // 
-            // dateTimePicker2
+            // dpLastUpdateTo
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(264, 202);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(152, 23);
-            this.dateTimePicker2.TabIndex = 4;
+            this.dpLastUpdateTo.Location = new System.Drawing.Point(264, 202);
+            this.dpLastUpdateTo.Name = "dpLastUpdateTo";
+            this.dpLastUpdateTo.Size = new System.Drawing.Size(152, 23);
+            this.dpLastUpdateTo.TabIndex = 4;
             // 
             // label6
             // 
@@ -158,12 +158,12 @@
             this.label6.TabIndex = 37;
             this.label6.Text = "Last Update Date (To):";
             // 
-            // dateTimePicker3
+            // dpLastUpdateFrom
             // 
-            this.dateTimePicker3.Location = new System.Drawing.Point(67, 202);
-            this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(152, 23);
-            this.dateTimePicker3.TabIndex = 3;
+            this.dpLastUpdateFrom.Location = new System.Drawing.Point(67, 202);
+            this.dpLastUpdateFrom.Name = "dpLastUpdateFrom";
+            this.dpLastUpdateFrom.Size = new System.Drawing.Size(152, 23);
+            this.dpLastUpdateFrom.TabIndex = 3;
             // 
             // label7
             // 
@@ -174,13 +174,13 @@
             this.label7.TabIndex = 35;
             this.label7.Text = "Last Update Date (From):";
             // 
-            // comboBox1
+            // cbPriority
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(67, 398);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(152, 23);
-            this.comboBox1.TabIndex = 7;
+            this.cbPriority.FormattingEnabled = true;
+            this.cbPriority.Location = new System.Drawing.Point(67, 398);
+            this.cbPriority.Name = "cbPriority";
+            this.cbPriority.Size = new System.Drawing.Size(152, 23);
+            this.cbPriority.TabIndex = 7;
             // 
             // label8
             // 
@@ -191,13 +191,13 @@
             this.label8.TabIndex = 39;
             this.label8.Text = "Priority:";
             // 
-            // comboBox2
+            // cbSeverity
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(67, 470);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(152, 23);
-            this.comboBox2.TabIndex = 8;
+            this.cbSeverity.FormattingEnabled = true;
+            this.cbSeverity.Location = new System.Drawing.Point(67, 470);
+            this.cbSeverity.Name = "cbSeverity";
+            this.cbSeverity.Size = new System.Drawing.Size(152, 23);
+            this.cbSeverity.TabIndex = 8;
             // 
             // label9
             // 
@@ -224,25 +224,25 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(462, 591);
             this.Controls.Add(this.cbSolved);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.cbSeverity);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cbPriority);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.dateTimePicker2);
+            this.Controls.Add(this.dpLastUpdateTo);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.dateTimePicker3);
+            this.Controls.Add(this.dpLastUpdateFrom);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dpCreationDateTo);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtId);
-            this.Controls.Add(this.dpCreatedDate);
+            this.Controls.Add(this.dpCreationDateFrom);
             this.Controls.Add(this.cbCreatorFullName);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtBugName);
+            this.Controls.Add(this.txtContains);
             this.Name = "FilterForm";
             this.Text = "Filter Bugs By:";
             this.ResumeLayout(false);
@@ -254,22 +254,22 @@
 
         private Label label1;
         private TextBox txtId;
-        private DateTimePicker dpCreatedDate;
+        private DateTimePicker dpCreationDateFrom;
         private ComboBox cbCreatorFullName;
         private Label label5;
         private Label label3;
         private Label label2;
-        private TextBox txtBugName;
+        private TextBox txtContains;
         private Button btnSave;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dpCreationDateTo;
         private Label label4;
-        private DateTimePicker dateTimePicker2;
+        private DateTimePicker dpLastUpdateTo;
         private Label label6;
-        private DateTimePicker dateTimePicker3;
+        private DateTimePicker dpLastUpdateFrom;
         private Label label7;
-        private ComboBox comboBox1;
+        private ComboBox cbPriority;
         private Label label8;
-        private ComboBox comboBox2;
+        private ComboBox cbSeverity;
         private Label label9;
         private CheckBox cbSolved;
     }
