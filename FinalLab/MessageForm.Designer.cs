@@ -43,61 +43,71 @@
             // 
             // cbCreatorFullName
             // 
+            this.cbCreatorFullName.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cbCreatorFullName.FormattingEnabled = true;
-            this.cbCreatorFullName.Location = new System.Drawing.Point(461, 39);
+            this.cbCreatorFullName.Location = new System.Drawing.Point(554, 52);
+            this.cbCreatorFullName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbCreatorFullName.Name = "cbCreatorFullName";
-            this.cbCreatorFullName.Size = new System.Drawing.Size(152, 23);
+            this.cbCreatorFullName.Size = new System.Drawing.Size(201, 31);
             this.cbCreatorFullName.TabIndex = 3;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(347, 101);
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label5.Location = new System.Drawing.Point(397, 135);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(78, 15);
+            this.label5.Size = new System.Drawing.Size(115, 23);
             this.label5.TabIndex = 19;
             this.label5.Text = "Created Date:";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(49, 164);
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label6.Location = new System.Drawing.Point(56, 219);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(31, 15);
+            this.label6.Size = new System.Drawing.Size(44, 23);
             this.label6.TabIndex = 17;
             this.label6.Text = "Text:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(347, 42);
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(397, 56);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(106, 15);
+            this.label3.Size = new System.Drawing.Size(153, 23);
             this.label3.TabIndex = 16;
             this.label3.Text = "Creator Full Name:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(49, 101);
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(56, 135);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 15);
+            this.label2.Size = new System.Drawing.Size(95, 23);
             this.label2.TabIndex = 13;
             this.label2.Text = "Bug Name:";
             // 
             // txtBugName
             // 
             this.txtBugName.Enabled = false;
-            this.txtBugName.Location = new System.Drawing.Point(129, 98);
+            this.txtBugName.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtBugName.Location = new System.Drawing.Point(154, 131);
+            this.txtBugName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtBugName.Name = "txtBugName";
-            this.txtBugName.Size = new System.Drawing.Size(152, 23);
+            this.txtBugName.Size = new System.Drawing.Size(190, 30);
             this.txtBugName.TabIndex = 1;
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(277, 353);
+            this.btnSave.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnSave.Location = new System.Drawing.Point(409, 475);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(90, 37);
+            this.btnSave.Size = new System.Drawing.Size(103, 49);
             this.btnSave.TabIndex = 5;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -105,41 +115,48 @@
             // 
             // dpCreatedDate
             // 
-            this.dpCreatedDate.Location = new System.Drawing.Point(461, 95);
+            this.dpCreatedDate.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.dpCreatedDate.Location = new System.Drawing.Point(554, 127);
+            this.dpCreatedDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dpCreatedDate.Name = "dpCreatedDate";
-            this.dpCreatedDate.Size = new System.Drawing.Size(152, 23);
+            this.dpCreatedDate.Size = new System.Drawing.Size(201, 30);
             this.dpCreatedDate.TabIndex = 4;
             // 
             // rbText
             // 
-            this.rbText.Location = new System.Drawing.Point(129, 161);
+            this.rbText.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.rbText.Location = new System.Drawing.Point(147, 215);
+            this.rbText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rbText.Name = "rbText";
-            this.rbText.Size = new System.Drawing.Size(484, 175);
+            this.rbText.Size = new System.Drawing.Size(608, 232);
             this.rbText.TabIndex = 2;
             this.rbText.Text = "";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(49, 42);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(56, 56);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(20, 15);
+            this.label1.Size = new System.Drawing.Size(29, 23);
             this.label1.TabIndex = 22;
             this.label1.Text = "Id:";
             // 
             // txtId
             // 
             this.txtId.Enabled = false;
-            this.txtId.Location = new System.Drawing.Point(129, 39);
+            this.txtId.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtId.Location = new System.Drawing.Point(154, 52);
+            this.txtId.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(152, 23);
+            this.txtId.Size = new System.Drawing.Size(190, 30);
             this.txtId.TabIndex = 0;
             // 
             // MessageForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(665, 417);
+            this.ClientSize = new System.Drawing.Size(812, 550);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.rbText);
@@ -151,6 +168,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtBugName);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "MessageForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Messages";

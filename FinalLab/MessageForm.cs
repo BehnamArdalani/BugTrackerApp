@@ -25,6 +25,10 @@ namespace GUILayer
             this.newMessageCallBack = newMessageCallBack;
             this.bugId = bugId;
             txtBugName.Text = context.Bugs.First(b => b.Id == bugId).BugName.ToString();
+
+            cbCreatorFullName.DataSource = CreatorsFullName;
+            dpCreatedDate.Format = DateTimePickerFormat.Custom;
+            dpCreatedDate.CustomFormat = "yyyy/MM/dd HH:mm:ss";
         }
 
         private void btnSave_Click(object sender, EventArgs e)

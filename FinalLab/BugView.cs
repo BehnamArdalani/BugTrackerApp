@@ -16,6 +16,7 @@ namespace DataAccessLayer
         public string Severity { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime LastUpdate { get; set; }
+        public bool Solved { get; set; }
 
         public BugView(Bug bug)
         {
@@ -27,6 +28,7 @@ namespace DataAccessLayer
             Severity = bug.Severity.Name;
             CreationDate = bug.CreationDate;
             LastUpdate = bug.LastUpdate;
+            Solved = bug.Solved;
 
         }
     }
