@@ -57,7 +57,7 @@
             this.txtId.Location = new System.Drawing.Point(190, 56);
             this.txtId.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(185, 30);
+            this.txtId.Size = new System.Drawing.Size(222, 30);
             this.txtId.TabIndex = 0;
             // 
             // label1
@@ -82,11 +82,12 @@
             // 
             // txtFirstName
             // 
+            this.txtFirstName.Enabled = false;
             this.txtFirstName.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtFirstName.Location = new System.Drawing.Point(190, 131);
             this.txtFirstName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtFirstName.Name = "txtFirstName";
-            this.txtFirstName.Size = new System.Drawing.Size(185, 30);
+            this.txtFirstName.Size = new System.Drawing.Size(222, 30);
             this.txtFirstName.TabIndex = 2;
             // 
             // label3
@@ -101,11 +102,12 @@
             // 
             // txtLastName
             // 
+            this.txtLastName.Enabled = false;
             this.txtLastName.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtLastName.Location = new System.Drawing.Point(190, 203);
             this.txtLastName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtLastName.Name = "txtLastName";
-            this.txtLastName.Size = new System.Drawing.Size(185, 30);
+            this.txtLastName.Size = new System.Drawing.Size(222, 30);
             this.txtLastName.TabIndex = 4;
             // 
             // label4
@@ -120,11 +122,12 @@
             // 
             // txtExperience
             // 
+            this.txtExperience.Enabled = false;
             this.txtExperience.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtExperience.Location = new System.Drawing.Point(642, 56);
             this.txtExperience.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtExperience.Name = "txtExperience";
-            this.txtExperience.Size = new System.Drawing.Size(200, 30);
+            this.txtExperience.Size = new System.Drawing.Size(216, 30);
             this.txtExperience.TabIndex = 10;
             // 
             // label5
@@ -139,11 +142,12 @@
             // 
             // txtSalary
             // 
+            this.txtSalary.Enabled = false;
             this.txtSalary.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtSalary.Location = new System.Drawing.Point(190, 352);
             this.txtSalary.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtSalary.Name = "txtSalary";
-            this.txtSalary.Size = new System.Drawing.Size(185, 30);
+            this.txtSalary.Size = new System.Drawing.Size(222, 30);
             this.txtSalary.TabIndex = 8;
             // 
             // label6
@@ -178,11 +182,12 @@
             // 
             // txtEmail
             // 
+            this.txtEmail.Enabled = false;
             this.txtEmail.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtEmail.Location = new System.Drawing.Point(642, 273);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(200, 30);
+            this.txtEmail.Size = new System.Drawing.Size(216, 30);
             this.txtEmail.TabIndex = 16;
             // 
             // label11
@@ -197,11 +202,12 @@
             // 
             // txtAddress
             // 
+            this.txtAddress.Enabled = false;
             this.txtAddress.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtAddress.Location = new System.Drawing.Point(642, 201);
             this.txtAddress.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(200, 30);
+            this.txtAddress.Size = new System.Drawing.Size(216, 30);
             this.txtAddress.TabIndex = 14;
             // 
             // label12
@@ -216,37 +222,40 @@
             // 
             // cbJobTitle
             // 
+            this.cbJobTitle.Enabled = false;
             this.cbJobTitle.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cbJobTitle.FormattingEnabled = true;
             this.cbJobTitle.Location = new System.Drawing.Point(190, 281);
             this.cbJobTitle.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbJobTitle.Name = "cbJobTitle";
-            this.cbJobTitle.Size = new System.Drawing.Size(185, 31);
+            this.cbJobTitle.Size = new System.Drawing.Size(222, 31);
             this.cbJobTitle.TabIndex = 5;
             // 
             // dpHireDate
             // 
+            this.dpHireDate.Enabled = false;
             this.dpHireDate.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.dpHireDate.Location = new System.Drawing.Point(642, 127);
             this.dpHireDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dpHireDate.Name = "dpHireDate";
-            this.dpHireDate.Size = new System.Drawing.Size(200, 30);
+            this.dpHireDate.Size = new System.Drawing.Size(216, 30);
             this.dpHireDate.TabIndex = 11;
             // 
             // dpDateofBirth
             // 
+            this.dpDateofBirth.Enabled = false;
             this.dpDateofBirth.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.dpDateofBirth.Location = new System.Drawing.Point(642, 344);
             this.dpDateofBirth.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dpDateofBirth.Name = "dpDateofBirth";
-            this.dpDateofBirth.Size = new System.Drawing.Size(200, 30);
+            this.dpDateofBirth.Size = new System.Drawing.Size(216, 30);
             this.dpDateofBirth.TabIndex = 21;
             // 
             // PersonForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(914, 488);
+            this.ClientSize = new System.Drawing.Size(964, 488);
             this.Controls.Add(this.dpDateofBirth);
             this.Controls.Add(this.dpHireDate);
             this.Controls.Add(this.cbJobTitle);
@@ -269,6 +278,7 @@
             this.Controls.Add(this.txtId);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "PersonForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Person";
             this.ResumeLayout(false);
             this.PerformLayout();

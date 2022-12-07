@@ -68,6 +68,7 @@
             this.dgvAllBugs.MultiSelect = false;
             this.dgvAllBugs.Name = "dgvAllBugs";
             this.dgvAllBugs.ReadOnly = true;
+            this.dgvAllBugs.RowHeadersVisible = false;
             this.dgvAllBugs.RowHeadersWidth = 51;
             this.dgvAllBugs.RowTemplate.Height = 25;
             this.dgvAllBugs.Size = new System.Drawing.Size(1246, 293);

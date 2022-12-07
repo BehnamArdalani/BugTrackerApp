@@ -31,21 +31,7 @@ namespace GUILayer
             this.newBugCallBack = newBugCallBack;
             if(bugId > 0)
             {
-                Bug bug = context.Bugs.First(bug => bug.Id == bugId);
-                txtId.Text = bug.Id.ToString();
-                txtBugName.Text = bug.BugName;
-                cbCreatorFullName.SelectedIndex = bug.CreatorId -1;
-                rbDescription.Text = bug.Description;
-                cbPriority.SelectedIndex = bug.PriorityId - 1;
-                cbSeverity.SelectedIndex = bug.SeverityId - 1;
-                dpCreationDate.Value = bug.CreationDate;
-                dpLastUpdate.Value = bug.LastUpdate;
-                cbIsSolved.Checked = bug.Solved;
-
-                MessageAndLogUpdate();
-
-                BugInfoToggeling();
-
+                FillAllData(bugId);
             }
         }
 
@@ -62,7 +48,7 @@ namespace GUILayer
 
         }
 
-        private void BugInfoToggeling()
+        private void FormToggle()
         {
             txtBugName.Enabled = !txtBugName.Enabled;
             cbCreatorFullName.Enabled = !cbCreatorFullName.Enabled;
@@ -73,7 +59,18 @@ namespace GUILayer
             dpLastUpdate.Enabled = !dpLastUpdate.Enabled;
             cbIsSolved.Enabled = !cbIsSolved.Enabled;
             btnSave.Enabled = !btnSave.Enabled;
+            btnCancel.Enabled = !btnCancel.Enabled;
             btnEdit.Enabled = !btnEdit.Enabled;
+            if (!txtId.Text.IsNullOrEmpty())
+            {
+                btnAdd.Enabled = !btnAdd.Enabled;
+                btnNewMessage.Enabled = !btnNewMessage.Enabled;
+            }
+            else
+            {
+                btnAdd.Enabled = false;
+                btnNewMessage.Enabled = false;
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -89,11 +86,11 @@ namespace GUILayer
             Bug bug = new Bug();
             bug.Id = txtId.Text.IsNullOrEmpty() ? 0 : Int32.Parse(txtId.Text);
             bug.BugName = txtBugName.Text;
-            bug.CreatorId = cbCreatorFullName.SelectedIndex + 1;
-            bug.Creator = context.People.First(p => p.Id == cbCreatorFullName.SelectedIndex + 1);
+            bug.CreatorId = cbCreatorFullName.SelectedIndex;
+            bug.Creator = context.People.First(p => p.Id == cbCreatorFullName.SelectedIndex);
             bug.Description = rbDescription.Text;
-            bug.PriorityId = cbPriority.SelectedIndex + 1;
-            bug.SeverityId = cbSeverity.SelectedIndex + 1;
+            bug.PriorityId = cbPriority.SelectedIndex;
+            bug.SeverityId = cbSeverity.SelectedIndex;
             bug.CreationDate = dpCreationDate.Value;
             bug.LastUpdate = dpLastUpdate.Value;
             bug.Solved = cbIsSolved.Checked;
@@ -110,7 +107,7 @@ namespace GUILayer
         {
             if (!txtBugName.Enabled)
             {
-                BugInfoToggeling();
+                FormToggle();
             }
 
             txtId.Clear();
@@ -135,7 +132,7 @@ namespace GUILayer
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            BugInfoToggeling();
+            FormToggle();
 
         }
 
@@ -179,5 +176,40 @@ namespace GUILayer
             }
         }
 
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            if (txtId.Text.IsNullOrEmpty())
+            {
+                Close();
+            }
+            else
+            {
+                FillAllData(Convert.ToInt32(txtId.Text));
+            }
+        }
+        private void FillAllData(int bugId)
+        {
+            Bug bug = context.Bugs.First(bug => bug.Id == bugId);
+            txtId.Text = bug.Id.ToString();
+            txtBugName.Text = bug.BugName;
+            cbCreatorFullName.SelectedIndex = bug.CreatorId;
+            rbDescription.Text = bug.Description;
+            cbPriority.SelectedIndex = bug.PriorityId;
+            cbSeverity.SelectedIndex = bug.SeverityId;
+            dpCreationDate.Value = bug.CreationDate;
+            dpLastUpdate.Value = bug.LastUpdate;
+            cbIsSolved.Checked = bug.Solved;
+
+            MessageAndLogUpdate();
+
+            FormToggle();
+        }
+
+        private void dgvMessages_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int selectedMessageId = (int)dgvMessages.SelectedRows[0].Cells["Id"].Value;
+            MessageForm messageForm = new MessageForm(null, 0, selectedMessageId);
+            messageForm.Show();
+        }
     }
 }

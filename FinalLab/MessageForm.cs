@@ -19,18 +19,41 @@ namespace GUILayer
         System.Action<Message> newMessageCallBack;
         public static string[]? CreatorsFullName;
         public int bugId;
-        public MessageForm(System.Action<Message> newMessageCallBack, int bugId)
+        public int messageId;
+        public MessageForm(System.Action<Message> newMessageCallBack, int bugId, int messageId = 0)
         {
             InitializeComponent();
+            
             this.newMessageCallBack = newMessageCallBack;
             this.bugId = bugId;
-            txtBugName.Text = context.Bugs.First(b => b.Id == bugId).BugName.ToString();
+            this.messageId = messageId;
 
+            Initialize();
+        }
+        private void Initialize()
+        {
             cbCreatorFullName.DataSource = CreatorsFullName;
             dpCreatedDate.Format = DateTimePickerFormat.Custom;
             dpCreatedDate.CustomFormat = "yyyy/MM/dd HH:mm:ss";
-        }
 
+
+            if (this.messageId == 0)
+            {
+                txtBugName.Text = context.Bugs.First(b => b.Id == this.bugId).BugName.ToString();
+            } 
+            else
+            {
+                Message message = context.Messages.First(m => m.Id == this.messageId);
+                txtId.Text = message.Id.ToString();
+                txtBugName.Text = context.Bugs.First(b => b.Id == message.BugId).BugName.ToString();
+                rbText.Text = message.Text;
+                cbCreatorFullName.SelectedIndex = message.CreatorId;
+                dpCreatedDate.Value = message.Created;
+                FormToggle();
+            }
+            
+
+        }
         private void btnSave_Click(object sender, EventArgs e)
         {
             if(newMessageCallBack != null)
@@ -44,7 +67,7 @@ namespace GUILayer
             Message message = new Message();
             message.BugId = bugId;
             message.Text = rbText.Text;
-            message.CreatorId = cbCreatorFullName.SelectedIndex + 1;
+            message.CreatorId = cbCreatorFullName.SelectedIndex;
             message.Created = dpCreatedDate.Value;
             return message;
         }
@@ -52,6 +75,13 @@ namespace GUILayer
         private void MessageForm_Load(object sender, EventArgs e)
         {
 
+        }
+        private void FormToggle()
+        {
+            rbText.Enabled = !rbText.Enabled;
+            cbCreatorFullName.Enabled = !cbCreatorFullName.Enabled;
+            dpCreatedDate.Enabled = !dpCreatedDate.Enabled;
+            btnSave.Enabled = !btnSave.Enabled;
         }
     }
 }

@@ -55,6 +55,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnCancel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMessages)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -63,7 +64,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(799, 667);
+            this.btnSave.Location = new System.Drawing.Point(732, 667);
             this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(103, 49);
@@ -244,20 +245,26 @@
             // 
             // dgvMessages
             // 
+            this.dgvMessages.AllowUserToAddRows = false;
+            this.dgvMessages.AllowUserToDeleteRows = false;
             this.dgvMessages.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvMessages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMessages.Location = new System.Drawing.Point(28, 41);
             this.dgvMessages.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvMessages.Name = "dgvMessages";
+            this.dgvMessages.ReadOnly = true;
+            this.dgvMessages.RowHeadersVisible = false;
             this.dgvMessages.RowHeadersWidth = 51;
             this.dgvMessages.RowTemplate.Height = 25;
             this.dgvMessages.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvMessages.Size = new System.Drawing.Size(556, 260);
             this.dgvMessages.TabIndex = 61;
+            this.dgvMessages.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMessages_CellClick);
             // 
             // btnNewMessage
             // 
-            this.btnNewMessage.Location = new System.Drawing.Point(908, 667);
+            this.btnNewMessage.Enabled = false;
+            this.btnNewMessage.Location = new System.Drawing.Point(950, 667);
             this.btnNewMessage.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnNewMessage.Name = "btnNewMessage";
             this.btnNewMessage.Size = new System.Drawing.Size(115, 49);
@@ -268,7 +275,8 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(581, 667);
+            this.btnAdd.Enabled = false;
+            this.btnAdd.Location = new System.Drawing.Point(514, 667);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(103, 49);
@@ -280,7 +288,7 @@
             // btnEdit
             // 
             this.btnEdit.Enabled = false;
-            this.btnEdit.Location = new System.Drawing.Point(690, 667);
+            this.btnEdit.Location = new System.Drawing.Point(623, 667);
             this.btnEdit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(103, 49);
@@ -340,11 +348,23 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Logs";
             // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(841, 667);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(103, 49);
+            this.btnCancel.TabIndex = 68;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // BugDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1535, 747);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -394,5 +414,6 @@
         private GroupBox groupBox1;
         private GroupBox groupBox2;
         private GroupBox groupBox3;
+        private Button btnCancel;
     }
 }

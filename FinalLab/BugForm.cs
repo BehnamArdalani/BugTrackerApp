@@ -2,7 +2,7 @@ using DataAccessLayer;
 using GUILayer;
 using Microsoft.IdentityModel.Tokens;
 using System.Windows.Forms;
-using Message = DataAccessLayer.Message;
+using BusinessLayer;
 
 namespace FinalLab
 {
@@ -49,9 +49,9 @@ namespace FinalLab
             cbCreatorFullName.DataSource = GetCreatorsFullName();
             cbPriority.DataSource = GetPriorities();
             cbSeverity.DataSource = GetSeverities();
-            cbCreatorFullName.SelectedIndex = -1;
-            cbPriority.SelectedIndex = -1;
-            cbSeverity.SelectedIndex = -1;
+            cbCreatorFullName.SelectedIndex = 0;
+            cbPriority.SelectedIndex = 0;
+            cbSeverity.SelectedIndex = 0;
 
             dpCreationDateFrom.Value = DateTime.Today.AddDays(-365);
             dpLastUpdateFrom.Value = DateTime.Today.AddDays(-365);
@@ -68,20 +68,24 @@ namespace FinalLab
 
         private string[] GetCreatorsFullName()
         {
-            return context.People.Select(p => p.Id + ". " + p.FirstName + " " + p.LastName).ToArray();
+            List<string> result = new List<string>();
+            result.Add("Any");
+            result.AddRange(context.People.Select(p => p.Id + ". " + p.FirstName + " " + p.LastName).ToList());
+            return result.ToArray();
         }
         private string[] GetPriorities()
         {
-            return context.Priorities.Select(p => p.Id + ". " + p.Name).ToArray();
+            List<string> result = new List<string>();
+            result.Add("Any");
+            result.AddRange(context.Priorities.Select(p => p.Id + ". " + p.Name).ToList());
+            return result.ToArray();
         }
         private string[] GetSeverities()
         {
-            return context.Severities.Select(s => s.Id + ". " + s.Name).ToArray();
-        }
-
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            
+            List<string> result = new List<string>();
+            result.Add("Any");
+            result.AddRange(context.Severities.Select(s => s.Id + ". " + s.Name).ToList());
+            return result.ToArray();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -94,9 +98,9 @@ namespace FinalLab
             dpLastUpdateFrom.Value = DateTime.Today.AddDays(-365);
             dpLastUpdateTo.Value = DateTime.Now;
             txtContains.Text = "";
-            cbCreatorFullName.SelectedIndex = -1;
-            cbPriority.SelectedIndex = -1;
-            cbSeverity.SelectedIndex = -1;
+            cbCreatorFullName.SelectedIndex = 0;
+            cbPriority.SelectedIndex = 0;
+            cbSeverity.SelectedIndex = 0;
             cbSolved.Checked = false;
 
         }
@@ -170,16 +174,43 @@ namespace FinalLab
             if(bug.Id <= 0)
             {
                 context.Add(bug);
+                context.SaveChanges();
             }
             else
             {
-                context.ChangeTracker.Clear();
+                Bug? currentBug = context.Bugs.SingleOrDefault(b => b.Id == bug.Id);
+                if(currentBug != null)
+                {
+                    if(currentBug.BugName != bug.BugName)
+                        currentBug.BugName = bug.BugName;
+                    if(currentBug.Description != bug.Description)
+                        currentBug.Description = bug.Description;
+                    if(currentBug.CreatorId != bug.CreatorId)
+                        currentBug.CreatorId = bug.CreatorId;
+                    if(currentBug.PriorityId != bug.PriorityId)
+                        currentBug.PriorityId = bug.PriorityId;
+                    if(currentBug.SeverityId != bug.SeverityId)
+                        currentBug.SeverityId = bug.SeverityId;
+                    if(currentBug.CreationDate != bug.CreationDate)
+                        currentBug.CreationDate = bug.CreationDate;
+                    if(currentBug.LastUpdate != bug.LastUpdate)
+                        currentBug.LastUpdate = bug.LastUpdate;
+                    if(currentBug.Solved != bug.Solved)
+                        currentBug.Solved = bug.Solved;
 
-                context.Bugs.Attach(bug);
-                context.Entry(bug).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    context.SaveChanges();
+   
+/*
+
+                    List<Variance> differences = DeepCompare.CompareTwoObjects(currentBug, bug);
+
+                    foreach(Variance difference in differences)
+                    {
+
+                    }
+*/
+                }
             }
-
-            context.SaveChanges();
 
             Log log = new Log();
             log.BugId = bug.Id;
@@ -210,7 +241,7 @@ namespace FinalLab
             
             filteredBugs = filteredBugs.Where(b => b.LastUpdate >= dpLastUpdateFrom.Value && b.LastUpdate <= dpLastUpdateTo.Value).ToList();
             
-            if (cbCreatorFullName.SelectedIndex > -1)
+            if (cbCreatorFullName.SelectedIndex > 0)
             {
                 filteredBugs = filteredBugs.Where(b => cbCreatorFullName.SelectedItem.ToString()!.Contains(b.CreatorFullName)).ToList();
             }
@@ -218,11 +249,11 @@ namespace FinalLab
             {
                 filteredBugs = filteredBugs.Where(b => b.BugName.ToLower().Contains(txtContains.Text) || b.Description.ToLower().Contains(txtContains.Text)).ToList();
             }
-            if (cbPriority.SelectedIndex > -1)
+            if (cbPriority.SelectedIndex > 0)
             {
                 filteredBugs = filteredBugs.Where(b => cbPriority.SelectedItem.ToString()!.Contains(b.Priority)).ToList();
             }
-            if (cbSeverity.SelectedIndex > -1)
+            if (cbSeverity.SelectedIndex > 0)
             {
                 filteredBugs = filteredBugs.Where(b => cbSeverity.SelectedItem.ToString()!.Contains(b.Severity)).ToList();
             }
