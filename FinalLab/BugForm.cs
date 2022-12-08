@@ -229,7 +229,7 @@ namespace FinalLab
                     if (!isEqualTwoObjects(currentBug.Solved, bug.Solved))
                         currentBug.Solved = bug.Solved;
 
-                    //context.SaveChanges();
+                    context.SaveChanges();
 
                     Log log = new Log();
                     log.BugId = currentBug.Id;
