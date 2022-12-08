@@ -3,6 +3,7 @@ using GUILayer;
 using Microsoft.IdentityModel.Tokens;
 using System.Windows.Forms;
 using BusinessLayer;
+using System.Reflection;
 
 namespace FinalLab
 {
@@ -171,56 +172,103 @@ namespace FinalLab
         }
         private void AddBugToDatabase(Bug bug)
         {
+
             if(bug.Id <= 0)
             {
-                context.Add(bug);
+                Bug newBug = new Bug();
+
+                newBug.BugName = bug.BugName;
+                newBug.Description = bug.Description;
+                newBug.CreatorId = bug.CreatorId;
+                newBug.PriorityId = bug.PriorityId;
+                newBug.SeverityId = bug.SeverityId;
+                newBug.CreationDate = bug.CreationDate;
+                newBug.LastUpdate = bug.LastUpdate;
+
+                context.Bugs.Add(newBug);
+                
                 context.SaveChanges();
+
+                Log log = new Log();
+                log.BugId = newBug.Id;
+                log.Created = DateTime.Now;
+                log.Message = "User #" + newBug.CreatorId + " added bug #" + newBug.Id;
+                context.Logs.Add(log);
+
+                context.SaveChanges();
+
             }
             else
             {
                 Bug? currentBug = context.Bugs.SingleOrDefault(b => b.Id == bug.Id);
+
                 if(currentBug != null)
                 {
-                    if(currentBug.BugName != bug.BugName)
+
+                    if (!isEqualTwoObjects(currentBug.BugName, bug.BugName))
                         currentBug.BugName = bug.BugName;
-                    if(currentBug.Description != bug.Description)
+
+                    if (!isEqualTwoObjects(currentBug.Description, bug.Description))
                         currentBug.Description = bug.Description;
-                    if(currentBug.CreatorId != bug.CreatorId)
+
+                    if (!isEqualTwoObjects(currentBug.CreatorId, bug.CreatorId))
                         currentBug.CreatorId = bug.CreatorId;
-                    if(currentBug.PriorityId != bug.PriorityId)
+
+                    if (!isEqualTwoObjects(currentBug.PriorityId, bug.PriorityId))
                         currentBug.PriorityId = bug.PriorityId;
-                    if(currentBug.SeverityId != bug.SeverityId)
+
+                    if (!isEqualTwoObjects(currentBug.SeverityId, bug.SeverityId))
                         currentBug.SeverityId = bug.SeverityId;
-                    if(currentBug.CreationDate != bug.CreationDate)
+
+                    if (!isEqualTwoObjects(currentBug.CreationDate, bug.CreationDate))
                         currentBug.CreationDate = bug.CreationDate;
-                    if(currentBug.LastUpdate != bug.LastUpdate)
+
+                    if (!isEqualTwoObjects(currentBug.LastUpdate, bug.LastUpdate))
                         currentBug.LastUpdate = bug.LastUpdate;
-                    if(currentBug.Solved != bug.Solved)
+
+                    if (!isEqualTwoObjects(currentBug.Solved, bug.Solved))
                         currentBug.Solved = bug.Solved;
 
+                    //context.SaveChanges();
+
+                    Log log = new Log();
+                    log.BugId = currentBug.Id;
+                    log.Created = DateTime.Now;
+                    log.Message = "User #" + currentBug.CreatorId + " edited bug #" + currentBug.Id;
+                    context.Logs.Add(log);
+
                     context.SaveChanges();
-   
-/*
 
-                    List<Variance> differences = DeepCompare.CompareTwoObjects(currentBug, bug);
-
-                    foreach(Variance difference in differences)
-                    {
-
-                    }
-*/
                 }
+                
             }
 
-            Log log = new Log();
-            log.BugId = bug.Id;
-            log.Created = DateTime.Now;
-            log.Message = "User #" + bug.CreatorId + " added bug #" + bug.Id;
-            context.Add(log);
-
-            context.SaveChanges();
-
             UpdateBugGrid();
+        }
+
+        private bool isEqualTwoObjects(Object ob1, Object ob2)
+        {
+            if (ob1 is int && ob2 is int)
+            {
+                return Convert.ToInt32(ob1) == Convert.ToInt32(ob2);
+            }
+            else if (ob1 is string && ob2 is string)
+            {
+                string st1 = (string)ob1;
+                string st2 = (string)ob2;
+                return st1.Equals(st2);
+            }
+            else if (ob1 is DateTime && ob2 is DateTime)
+            {
+                DateTime dt1 = (DateTime)ob1;
+                DateTime dt2 = (DateTime)ob2;
+                return dt1.Equals(dt2);
+
+            }
+            else if (ob1 is bool && ob2 is bool) {
+                return ((bool)ob1) == ((bool)ob2);
+            }
+            return false;
         }
 
         private void btnFilter_Click(object sender, EventArgs e)
