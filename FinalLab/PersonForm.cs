@@ -1,19 +1,10 @@
-﻿using DataAccessLayer;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using BusinessLayer;
 
 namespace GUILayer
 {
     public partial class PersonForm : Form
     {
-        BugTrackerContext context = BugTrackerContextFactory.GetContext();
+        App app = new App();
         public PersonForm(int personId = -1)
         {
             InitializeComponent();
@@ -28,27 +19,28 @@ namespace GUILayer
         {
             cbJobTitle.Items.Clear();
             List<string> jobTitles = new List<string>();
-            jobTitles = context.People.Select(p => p.JobTitle).Distinct().ToList()!;
+            jobTitles = app.GetJobTitles();
             foreach(string jobTitle in jobTitles)
             {
                 cbJobTitle.Items.Add(jobTitle == null ? "" : jobTitle);
             }
-
         }
 
         private void FillPersonData(int personId)
         {
-            Person person = context.People.First(p => p.Id == personId);
-            txtId.Text = person.Id.ToString();
-            txtFirstName.Text = person.FirstName.ToString();
-            txtLastName.Text = person.LastName.ToString();
-            cbJobTitle.Text = person.JobTitle == null ? "" : person.JobTitle.ToString();
-            txtSalary.Text = person.Salary.ToString();
-            txtExperience.Text = person.YearsOfExperience.ToString();
-            dpHireDate.Value = (DateTime)person.HiredDate;
-            txtAddress.Text = person.Address!.ToString();
-            txtEmail.Text = person.Email == null ? "" : person.Email!.ToString();
-            dpDateofBirth.Value = (DateTime)person.DateOfBirth!;
+            PersonView personView = app.GetPersonById(personId);
+
+            txtId.Text = personView.Id.ToString();
+            txtFirstName.Text = personView.FirstName.ToString();
+            txtLastName.Text = personView.LastName.ToString();
+            cbJobTitle.Text = personView.JobTitle == null ? "" : personView.JobTitle.ToString();
+            txtSalary.Text = personView.Salary.ToString();
+            txtExperience.Text = personView.YearsOfExperience.ToString();
+            dpHireDate.Value = (DateTime)personView.HiredDate;
+            txtAddress.Text = personView.Address!.ToString();
+            txtEmail.Text = personView.Email == null ? "" : personView.Email!.ToString();
+            dpDateofBirth.Value = (DateTime)personView.DateOfBirth!;
+        
         }
     }
 }

@@ -1,15 +1,13 @@
-using DataAccessLayer;
+//using DataAccessLayer;
 using GUILayer;
 using Microsoft.IdentityModel.Tokens;
-using System.Windows.Forms;
 using BusinessLayer;
-using System.Reflection;
 
 namespace FinalLab
 {
     public partial class BugForm : Form
     {
-        BugTrackerContext context = BugTrackerContextFactory.GetContext();
+        BusinessLayer.App app = new App();
 
         int selectedBugId;
         public BugForm()
@@ -32,24 +30,20 @@ namespace FinalLab
             dgvAllBugs.AllowUserToAddRows = false;
             dgvAllBugs.AllowUserToDeleteRows = false;
 
-            /*dgvMessages.ReadOnly = true;
-            dgvMessages.AllowUserToAddRows = false;
-            dgvMessages.AllowUserToDeleteRows = false;
-            */
             dgvAllBugs.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            //dgvMessages.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
             UpdateBugGrid();
 
-            MessageForm.CreatorsFullName = GetCreatorsFullName();
+            MessageForm.CreatorsFullName = app.GetCreatorsFullName();
+            MessageForm.BugNames = app.GetBugNames();
             
-            BugDetailsForm.CreatorsFullName = GetCreatorsFullName();
-            BugDetailsForm.Priorities = GetPriorities();
-            BugDetailsForm.Severities = GetSeverities();
+            BugDetailsForm.CreatorsFullName = app.GetCreatorsFullName();
+            BugDetailsForm.Priorities = app.GetPriorities();
+            BugDetailsForm.Severities = app.GetSeverities();
 
-            cbCreatorFullName.DataSource = GetCreatorsFullName();
-            cbPriority.DataSource = GetPriorities();
-            cbSeverity.DataSource = GetSeverities();
+            cbCreatorFullName.DataSource = app.GetCreatorsFullName();
+            cbPriority.DataSource = app.GetPriorities();
+            cbSeverity.DataSource = app.GetSeverities();
             cbCreatorFullName.SelectedIndex = 0;
             cbPriority.SelectedIndex = 0;
             cbSeverity.SelectedIndex = 0;
@@ -65,28 +59,6 @@ namespace FinalLab
             dpLastUpdateTo.Format = DateTimePickerFormat.Custom;
             dpLastUpdateTo.CustomFormat = "yyyy/MM/dd HH:mm:ss";
 
-        }
-
-        private string[] GetCreatorsFullName()
-        {
-            List<string> result = new List<string>();
-            result.Add("Any");
-            result.AddRange(context.People.Select(p => p.Id + ". " + p.FirstName + " " + p.LastName).ToList());
-            return result.ToArray();
-        }
-        private string[] GetPriorities()
-        {
-            List<string> result = new List<string>();
-            result.Add("Any");
-            result.AddRange(context.Priorities.Select(p => p.Id + ". " + p.Name).ToList());
-            return result.ToArray();
-        }
-        private string[] GetSeverities()
-        {
-            List<string> result = new List<string>();
-            result.Add("Any");
-            result.AddRange(context.Severities.Select(s => s.Id + ". " + s.Name).ToList());
-            return result.ToArray();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -110,7 +82,7 @@ namespace FinalLab
             dgvAllBugs.DataSource = null;
             if (filteredBugs == null)
             {
-                dgvAllBugs.DataSource = context.Bugs.Select(b => new BugView(b)).ToArray();
+                dgvAllBugs.DataSource = app.GetAllBugViews();
             }
             else
             {
@@ -130,7 +102,7 @@ namespace FinalLab
 
             if (column == "CreatorFullName")
             {
-                int personId = context.Bugs.First(b => b.Id == selectedBugId).CreatorId;
+                int personId = app.GetPersonIdByBugId(selectedBugId);
                 CallPersonForm(personId);
             }
 
@@ -170,106 +142,13 @@ namespace FinalLab
             BugDetailsForm bugDetailsForm = new BugDetailsForm(AddBugToDatabase);
             bugDetailsForm.Show();
         }
-        private void AddBugToDatabase(Bug bug)
+        private void AddBugToDatabase()
         {
-
-            if(bug.Id <= 0)
-            {
-                Bug newBug = new Bug();
-
-                newBug.BugName = bug.BugName;
-                newBug.Description = bug.Description;
-                newBug.CreatorId = bug.CreatorId;
-                newBug.PriorityId = bug.PriorityId;
-                newBug.SeverityId = bug.SeverityId;
-                newBug.CreationDate = bug.CreationDate;
-                newBug.LastUpdate = bug.LastUpdate;
-
-                context.Bugs.Add(newBug);
-                
-                context.SaveChanges();
-
-                Log log = new Log();
-                log.BugId = newBug.Id;
-                log.Created = DateTime.Now;
-                log.Message = "User #" + newBug.CreatorId + " added bug #" + newBug.Id;
-                context.Logs.Add(log);
-
-                context.SaveChanges();
-
-            }
-            else
-            {
-                Bug? currentBug = context.Bugs.SingleOrDefault(b => b.Id == bug.Id);
-
-                if(currentBug != null)
-                {
-
-                    if (!isEqualTwoObjects(currentBug.BugName, bug.BugName))
-                        currentBug.BugName = bug.BugName;
-
-                    if (!isEqualTwoObjects(currentBug.Description, bug.Description))
-                        currentBug.Description = bug.Description;
-
-                    if (!isEqualTwoObjects(currentBug.CreatorId, bug.CreatorId))
-                        currentBug.CreatorId = bug.CreatorId;
-
-                    if (!isEqualTwoObjects(currentBug.PriorityId, bug.PriorityId))
-                        currentBug.PriorityId = bug.PriorityId;
-
-                    if (!isEqualTwoObjects(currentBug.SeverityId, bug.SeverityId))
-                        currentBug.SeverityId = bug.SeverityId;
-
-                    if (!isEqualTwoObjects(currentBug.CreationDate, bug.CreationDate))
-                        currentBug.CreationDate = bug.CreationDate;
-
-                    if (!isEqualTwoObjects(currentBug.LastUpdate, bug.LastUpdate))
-                        currentBug.LastUpdate = bug.LastUpdate;
-
-                    if (!isEqualTwoObjects(currentBug.Solved, bug.Solved))
-                        currentBug.Solved = bug.Solved;
-
-                    context.SaveChanges();
-
-                    Log log = new Log();
-                    log.BugId = currentBug.Id;
-                    log.Created = DateTime.Now;
-                    log.Message = "User #" + currentBug.CreatorId + " edited bug #" + currentBug.Id;
-                    context.Logs.Add(log);
-
-                    context.SaveChanges();
-
-                }
-                
-            }
 
             UpdateBugGrid();
         }
 
-        private bool isEqualTwoObjects(Object ob1, Object ob2)
-        {
-            if (ob1 is int && ob2 is int)
-            {
-                return Convert.ToInt32(ob1) == Convert.ToInt32(ob2);
-            }
-            else if (ob1 is string && ob2 is string)
-            {
-                string st1 = (string)ob1;
-                string st2 = (string)ob2;
-                return st1.Equals(st2);
-            }
-            else if (ob1 is DateTime && ob2 is DateTime)
-            {
-                DateTime dt1 = (DateTime)ob1;
-                DateTime dt2 = (DateTime)ob2;
-                return dt1.Equals(dt2);
-
-            }
-            else if (ob1 is bool && ob2 is bool) {
-                return ((bool)ob1) == ((bool)ob2);
-            }
-            return false;
-        }
+        
 
         private void btnFilter_Click(object sender, EventArgs e)
         {
@@ -279,7 +158,7 @@ namespace FinalLab
 
         private Array GetFilteredBugs()
         {
-            List<BugView> filteredBugs = context.Bugs.Select(b => new BugView(b)).ToList();
+            List<BugView> filteredBugs = app.GetAllBugViews().ToList();
             if (!txtId.Text.IsNullOrEmpty())
             {
                 filteredBugs = filteredBugs.Where(b => b.Id == Convert.ToInt32(txtId.Text)).ToList();

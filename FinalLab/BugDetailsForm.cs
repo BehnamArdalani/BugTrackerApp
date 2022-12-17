@@ -1,28 +1,19 @@
-﻿using DataAccessLayer;
+﻿using BusinessLayer;
+//using DataAccessLayer;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Xml.Linq;
 using Message = DataAccessLayer.Message;
 
 namespace GUILayer
 {
     public partial class BugDetailsForm : Form
     {
-        BugTrackerContext context = BugTrackerContextFactory.GetContext();
+        App app = new App();
 
-        System.Action<Bug> newBugCallBack;
+        System.Action newBugCallBack;
         public static string[]? CreatorsFullName;
         public static string[]? Priorities;
         public static string[]? Severities;
-        public BugDetailsForm(System.Action<Bug> newBugCallBack,int bugId = -1)
+        public BugDetailsForm(System.Action newBugCallBack,int bugId = -1)
         {
             InitializeComponent();
 
@@ -75,27 +66,20 @@ namespace GUILayer
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (newBugCallBack != null)
-            {
-                newBugCallBack(GetBugInfo());
-            }
-            Close();
-        }
-        private Bug GetBugInfo()
-        {
-            Bug bug = new Bug();
-            bug.Id = txtId.Text.IsNullOrEmpty() ? 0 : Int32.Parse(txtId.Text);
-            bug.BugName = txtBugName.Text;
-            bug.CreatorId = cbCreatorFullName.SelectedIndex;
-            bug.Creator = context.People.First(p => p.Id == cbCreatorFullName.SelectedIndex);
-            bug.Description = rbDescription.Text;
-            bug.PriorityId = cbPriority.SelectedIndex;
-            bug.SeverityId = cbSeverity.SelectedIndex;
-            bug.CreationDate = dpCreationDate.Value;
-            bug.LastUpdate = dpLastUpdate.Value;
-            bug.Solved = cbIsSolved.Checked;
+            BugData bugData = new BugData();
+            bugData.Id = txtId.Text.IsNullOrEmpty() ? 0 : Int32.Parse(txtId.Text);
+            bugData.BugName = txtBugName.Text;
+            bugData.CreatorId = cbCreatorFullName.SelectedIndex;
+            bugData.Description = rbDescription.Text;
+            bugData.PriorityId = cbPriority.SelectedIndex;
+            bugData.SeverityId = cbSeverity.SelectedIndex;
+            bugData.CreationDate = dpCreationDate.Value;
+            bugData.LastUpdate = dpLastUpdate.Value;
+            bugData.Solved = cbIsSolved.Checked;
 
-            return bug;
+            app.SaveBug(bugData);
+
+            Close();
         }
 
         private void BugDetailsForm_Load(object sender, EventArgs e)
@@ -138,39 +122,22 @@ namespace GUILayer
 
         private void btnNewMessage_Click(object sender, EventArgs e)
         {
-            if(txtId.Text.IsNullOrEmpty())
-            {
-                MessageBox.Show("Please go back to the Bug list and select a bug!", "Error");
-            }
-            else
-            {
-                MessageForm messageForm = new MessageForm(AddMessageToDatabase,Convert.ToInt32(txtId.Text));
-                messageForm.Show();
-            }
+            MessageForm messageForm = new MessageForm(AddMessageToDatabase,Convert.ToInt32(txtId.Text));
+            messageForm.Show();
+            
         }
 
-        private void AddMessageToDatabase(Message message)
+        private void AddMessageToDatabase()
         {
-            context.Add(message);
-
-            context.SaveChanges();
-
-            Log log = new Log();
-            log.BugId = message.BugId;
-            log.Created = DateTime.Now;
-            log.Message = "User #" + message.CreatorId + " added message #" + message.Id + " to bug #" + message.BugId;
-            context.Add(log);
-
-            context.SaveChanges();
-
             MessageAndLogUpdate();
         }
         private void MessageAndLogUpdate()
         {
-            dgvMessages.DataSource = context.Messages.Where(m => m.BugId == Convert.ToInt32(txtId.Text)).Select(m => new MessageView(m)).ToArray();
+            dgvMessages.DataSource = app.GetAllBugMessageViews(Convert.ToInt32(txtId.Text));
             dgvMessages.Columns["Id"].Visible = false;
+            
             rtxtLogs.Text = "";
-            foreach (var log in context.Logs.Where(l => l.BugId == Convert.ToInt32(txtId.Text)))
+            foreach (var log in app.GetAllBugLogs(Convert.ToInt32(txtId.Text)))
             {
                 rtxtLogs.Text += log.ToString() + "\n";
             }
@@ -189,16 +156,16 @@ namespace GUILayer
         }
         private void FillAllData(int bugId)
         {
-            Bug bug = context.Bugs.First(bug => bug.Id == bugId);
-            txtId.Text = bug.Id.ToString();
-            txtBugName.Text = bug.BugName;
-            cbCreatorFullName.SelectedIndex = bug.CreatorId;
-            rbDescription.Text = bug.Description;
-            cbPriority.SelectedIndex = bug.PriorityId;
-            cbSeverity.SelectedIndex = bug.SeverityId;
-            dpCreationDate.Value = bug.CreationDate;
-            dpLastUpdate.Value = bug.LastUpdate;
-            cbIsSolved.Checked = bug.Solved;
+            BugData bugData = app.GetBugById(bugId);
+            txtId.Text = bugData.Id.ToString();
+            txtBugName.Text = bugData.BugName;
+            cbCreatorFullName.SelectedIndex = bugData.CreatorId;
+            rbDescription.Text = bugData.Description;
+            cbPriority.SelectedIndex = bugData.PriorityId;
+            cbSeverity.SelectedIndex = bugData.SeverityId;
+            dpCreationDate.Value = bugData.CreationDate;
+            dpLastUpdate.Value = bugData.LastUpdate;
+            cbIsSolved.Checked = bugData.Solved;
 
             MessageAndLogUpdate();
 
