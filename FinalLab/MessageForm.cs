@@ -36,8 +36,7 @@ namespace GUILayer
             {
                 MessageData messageData = app.GetMessageById(this.messageId);
                 txtId.Text = messageData.Id.ToString();
-                //cbBugName.SelectedIndex = messageData.BugId;
-                cbBugName.Text = messageData.BugName;
+                cbBugName.SelectedIndex = messageData.BugId;
                 rbText.Text = messageData.Text;
                 txtTitle.Text = messageData.Title;
                 cbCreatorFullName.SelectedIndex = messageData.CreatorId;
@@ -61,11 +60,6 @@ namespace GUILayer
 
             Close();
         }
-
-        private void MessageForm_Load(object sender, EventArgs e)
-        {
-
-        }
         private void FormToggle()
         {
             rbText.Enabled = !rbText.Enabled;
@@ -75,11 +69,6 @@ namespace GUILayer
             dpCreatedDate.Enabled = !dpCreatedDate.Enabled;
             btnSave.Enabled = !btnSave.Enabled;
             
-        }
-
-        private void rbText_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

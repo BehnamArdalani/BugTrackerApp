@@ -51,16 +51,6 @@ namespace BusinessLayer
         public BugView[] GetAllBugViews()
         {
             return context.Bugs.Select(b => new BugView(b)).ToArray();
-            /*
-            List<Bug> bugs = context.Bugs.ToList();
-            foreach (Bug bug in bugs)
-            {
-                bug.Creator = context.People.First(p => p.Id == bug.CreatorId);
-                bug.Priority = context.Priorities.First(p => p.Id == bug.PriorityId);
-                bug.Severity = context.Severities.First(s => s.Id == bug.SeverityId);
-            }
-            return bugs.Select(b => new BugView(b)).ToArray();
-            */
         }
         public int GetPersonIdByBugId(int bugId) => context.Bugs.First(b => b.Id == bugId).CreatorId;
 
@@ -162,12 +152,6 @@ namespace BusinessLayer
             }
             return false;
         }
-        public void SaveLog(Log log)
-        {
-            context.Logs.Add(log);
-            context.SaveChanges();
-        }
-
         public BugData GetBugById(int bugId)
         {
             Bug bug = context.Bugs.FirstOrDefault(b => b.Id == bugId)!;

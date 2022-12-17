@@ -192,11 +192,6 @@ namespace FinalLab
             return filteredBugs.ToArray();
         }
 
-        private void gbFilter_Enter(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnOpen_Click(object sender, EventArgs e)
         {
             int selectedBugId = (int)dgvAllBugs.SelectedRows[0].Cells["Id"].Value;

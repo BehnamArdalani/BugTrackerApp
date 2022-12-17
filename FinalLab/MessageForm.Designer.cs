@@ -123,7 +123,6 @@
             this.rbText.Size = new System.Drawing.Size(601, 212);
             this.rbText.TabIndex = 2;
             this.rbText.Text = "";
-            this.rbText.TextChanged += new System.EventHandler(this.rbText_TextChanged);
             // 
             // label1
             // 
@@ -197,7 +196,6 @@
             this.Name = "MessageForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Messages";
-            this.Load += new System.EventHandler(this.MessageForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
